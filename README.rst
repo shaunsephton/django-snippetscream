@@ -9,7 +9,7 @@ Included Snippets
 
 Resolve URLs to View Name
 +++++++++++++++++++++++++
-Suplies a resolve_to_name function that takes in a path and resolves it to a view name or view function name (given that the path is actually defined in your urlconf).
+Supplies a resolve_to_name function that takes in a path and resolves it to a view name or view function name (given that the path is actually defined in your urlconf).
 
 Original Snippet - http://djangosnippets.org/snippets/1378/
 
