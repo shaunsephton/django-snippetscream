@@ -7,7 +7,7 @@ Django app packaging the best snippets found on http://djangosnippets.org
 Included Snippets
 -----------------
 
-963. RequestFactory: 
+963. RequestFactory 
 ++++++++++++++++++++
 Easily create mock request objects for use in testing.
 
