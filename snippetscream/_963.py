@@ -1,7 +1,8 @@
 # http://djangosnippets.org/snippets/963/
 
-from django.test import Client
+from django.core.handlers.base import BaseHandler
 from django.core.handlers.wsgi import WSGIRequest
+from django.test import Client
 
 class RequestFactory(Client):
     """
@@ -36,5 +37,15 @@ class RequestFactory(Client):
             'SERVER_PROTOCOL': 'HTTP/1.1',
         }
         environ.update(self.defaults)
-        environ.update(request)
-        return WSGIRequest(environ)
+        environ.update(request) 
+        request = WSGIRequest(environ)
+
+        # Add request.user.
+        handler = BaseHandler()
+        handler.load_middleware()
+        for middleware_method in handler._request_middleware:
+            if middleware_method(request):
+                raise Exception("Couldn't create request mock object - "
+                                "request middleware returned a response")
+
+        return request
