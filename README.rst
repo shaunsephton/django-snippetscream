@@ -16,7 +16,7 @@ Original Snippet - http://djangosnippets.org/snippets/963/
 Example::
 
     from snippetscream import RequestFactory
-    request = RequestFactory()
+    request = RequestFactory().get('/')
     
 
 1378. Resolve URLs to View Name
