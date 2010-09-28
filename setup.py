@@ -4,7 +4,7 @@ setup(
     name='django-snippetscream',
     version='0.0.1',
     description='Django app packaging the best snippets found on http://djangosnippets.org',
-    long_description = open('README.rst', 'r').read(),
+    long_description = open('README.rst', 'r').read() + open('AUTHORS.rst', 'r').read() + open('CHANGELOG.rst', 'r').read(),
     author='Shaun Sephton',
     author_email='shaunsephton@gmail.com',
     url='http://github.com/shaunsephton/django-snippetscream',
