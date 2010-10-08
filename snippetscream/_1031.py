@@ -39,7 +39,7 @@ class PolyModel(models.Model):
         except AttributeError:
             content_type = self.content_type
             model = content_type.model_class()
-            if(model == ModelBase):
+            if(PolyModel in model.__bases__):
                 return self
             return model.objects.get(id=self.id)
         

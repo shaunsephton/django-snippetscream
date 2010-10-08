@@ -17,6 +17,28 @@ Example::
 
     from snippetscream import RequestFactory
     request = RequestFactory().get('/')
+
+1031. Model Inheritance With Content Type 
++++++++++++++++++++++++++++++++++++++++++
+Supplies a model class aware of its child models, allowing for child class objects to be resolved from parent objects.
+
+Original Snippet - http://djangosnippets.org/snippets/1031/
+
+Example::
+
+    === example usage in interpreter ===
+    >>> from snippetscream import PolyModel
+    >>> class TrunkModel(PolyModel):
+    ...     pass
+    >>> class LeafModel(TrunkModel):
+    ...     pass
+    >>> leaf_obj = LeafModel()
+    >>> leaf_obj.save()
+    >>> trunk_obj = TrunkModel.objects.get(id=leaf_obj.id)
+    >>> trunk_obj
+    ... <TrunkModel: TrunkModel object>
+    >>> trunk_obj.as_leaf_class()
+    ... <LeafModel: LeafModel object>
     
 
 1378. Resolve URLs to View Name
