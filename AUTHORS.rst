@@ -1,6 +1,12 @@
 Authors
 =======
 
+All credit goes to the various super generous snippet creators and comment contributors. Thanks for sharing!
+
+Maintained By
+-------------
+#. Shaun Sephton
+
 963. RequestFactory
 -------------------
 #. simon
@@ -11,8 +17,11 @@ Authors
 #. crucialfelix
 #. tygielzchaosem
 
-
 1378. Resolve URLs to View Name
 -------------------------------
 #. UloPe
 
+1875. Auto-create Django Admin User During syncdb
+-------------------------------------------------
+#. statico 
+#. Brandon Craig Rhodes

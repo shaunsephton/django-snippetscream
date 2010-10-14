@@ -62,3 +62,13 @@ Example::
     >>> print resolve_to_name('/some/other/url')
     'this_is_a_named_view'
 
+1875. Auto-create Django Admin User During syncdb
++++++++++++++++++++++++++++++++++++++++++++++++++
+This avoids the frustrating step of having to set up a new admin user every time you re-initialize your database. 
+
+Original Snippet - http://djangosnippets.org/snippets/1875/
+
+To enable create the following setting::
+
+    CREATE_DEFAULT_SUPERUSER = True
+
