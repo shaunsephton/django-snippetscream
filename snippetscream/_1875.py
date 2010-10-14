@@ -25,8 +25,12 @@ if getattr(settings, 'CREATE_DEFAULT_SUPERUSER', False):
     signals.post_syncdb.disconnect(
         create_superuser,
         sender=auth_models,
-        dispatch_uid='django.contrib.auth.management.create_superuser')
+        dispatch_uid='django.contrib.auth.management.create_superuser'
+    )
 
     # Trigger default superuser creation.
-    signals.post_syncdb.connect(create_default_superuser,
-        sender=auth_models, dispatch_uid='common.models.create_testuser')
+    signals.post_syncdb.connect(
+        create_default_superuser, 
+        sender=auth_models, 
+        dispatch_uid='common.models.create_testuser'
+    )
