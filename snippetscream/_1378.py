@@ -4,16 +4,23 @@ from django.core.urlresolvers import RegexURLResolver, RegexURLPattern, Resolver
 
 __all__ = ('resolve_to_name',)
 
+
+def _dispatch(pattern, path):
+    if isinstance(pattern, RegexURLPattern):
+        return _pattern_resolve_to_name(pattern, path)
+    else:
+        return _resolver_resolve_to_name(pattern, path)
+
 def _pattern_resolve_to_name(self, path):
     match = self.regex.search(path)
     if match:
-        name = ""
+        name = ''
         if self.name:
             name = self.name
         elif hasattr(self, '_callback_str'):
             name = self._callback_str
         else:
-            name = "%s.%s" % (self.callback.__module__, self.callback.func_name)
+            name = '%s.%s' % (self.callback.__module__, self.callback.func_name)
         return name
 
 def _resolver_resolve_to_name(self, path):
@@ -23,7 +30,7 @@ def _resolver_resolve_to_name(self, path):
         new_path = path[match.end():]
         for pattern in self.url_patterns:
             try:
-                name = _pattern_resolve_to_name(pattern,new_path)
+                name = _dispatch(pattern, new_path)
             except Resolver404, e:
                 tried.extend([(pattern.regex.pattern + '   ' + t) for t in e.args[0]['tried']])
             else:
@@ -35,8 +42,5 @@ def _resolver_resolve_to_name(self, path):
 
 def resolve_to_name(path, urlconf=None):
     r = get_resolver(urlconf)
-    if isinstance(r, RegexURLPattern):
-        return _pattern_resolve_to_name(r, path)
-    else:
-        return _resolver_resolve_to_name(r, path)
+    dispatch(r, path)
 
