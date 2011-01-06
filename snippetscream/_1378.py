@@ -42,5 +42,5 @@ def _resolver_resolve_to_name(self, path):
 
 def resolve_to_name(path, urlconf=None):
     r = get_resolver(urlconf)
-    dispatch(r, path)
+    _dispatch(r, path)
 
