@@ -23,7 +23,7 @@ def _resolver_resolve_to_name(self, path):
         new_path = path[match.end():]
         for pattern in self.url_patterns:
             try:
-                name = pattern.resolve_to_name(new_path)
+                name = _pattern_resolve_to_name(pattern,new_path)
             except Resolver404, e:
                 tried.extend([(pattern.regex.pattern + '   ' + t) for t in e.args[0]['tried']])
             else:
