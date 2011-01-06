@@ -33,10 +33,10 @@ def _resolver_resolve_to_name(self, path):
         raise Resolver404, {'tried': tried, 'path': new_path}
 
 
-# here goes monkeypatching
-RegexURLPattern.resolve_to_name = _pattern_resolve_to_name
-RegexURLResolver.resolve_to_name = _resolver_resolve_to_name
-
-
 def resolve_to_name(path, urlconf=None):
-    return get_resolver(urlconf).resolve_to_name(path)
+    r = get_resolver(urlconf)
+    if isinstance(r, RegexURLPattern):
+        return _pattern_resolve_to_name(r, path)
+    else:
+        return _resolver_resolve_to_name(r, path)
+
