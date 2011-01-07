@@ -68,7 +68,7 @@ This avoids the frustrating step of having to set up a new admin user every time
 
 Original Snippet - http://djangosnippets.org/snippets/1875/
 
-To enable create the following setting::
+To enable add ``snippetscream`` to your ``INSTALLED_APPS`` settings and create the following setting::
 
     CREATE_DEFAULT_SUPERUSER = True
 
