@@ -7,6 +7,10 @@ Maintained By
 -------------
 #. Shaun Sephton
 
+186. Profiling Middleware
+-------------------------
+#. udfalkso
+
 963. RequestFactory
 -------------------
 #. simon
