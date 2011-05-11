@@ -37,7 +37,7 @@ class ProfileMiddleware(object):
             #stats.strip_dirs()
 
             stats.sort_stats('time', 'calls')
-            stats.print_stats('django_mobiletv_api')
+            stats.print_stats()
 
             sys.stdout = old_stdout
             stats_str = out.getvalue()
