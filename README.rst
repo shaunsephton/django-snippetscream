@@ -7,6 +7,14 @@ Django app packaging the best snippets found on http://djangosnippets.org
 Included Snippets
 -----------------
 
+186. Profiling Middleware
++++++++++++++++++++++++++
+Displays hotshot profiling for any view. Add a "prof" key to the query string by appending ?prof (or &prof=) and you'll see the profiling results in your browser, i.e. http://yoursite.com/yourview/?prof
+
+To enable add ``snippetscream.ProfileMiddleware`` to your ``MIDDLEWARE_CLASSES`` setting, i.e.::
+    
+    MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('snippetscream.ProfileMiddleware',)
+
 963. RequestFactory 
 ++++++++++++++++++++
 Easily create mock request objects for use in testing.
