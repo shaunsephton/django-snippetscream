@@ -80,3 +80,22 @@ To enable add ``snippetscream`` to your ``INSTALLED_APPS`` settings and create t
 
     CREATE_DEFAULT_SUPERUSER = True
 
+2240. CSV Serializer
+++++++++++++++++++++
+Supplies CSV serialization for models. Can be used via the dumpdata/loaddata management commands or programmatically using the ``django.core.serializers`` module. Supports multiple header lines and natural keys.
+
+To enable add ``snippetscream.csv_serializer`` to your ``SERIALIZATION_MODULES`` setting, i.e.::
+    
+    SERIALIZATION_MODULES = {
+        'csv': 'snippetscream.csv_serializer',
+    }
+
+Example::
+
+    === example dumpdata usage ===
+    $ python manage.py dumpdata --format csv auth.user > users.csv
+
+    === example usage in interpreter ===
+    >>> from django.core import serializers
+    >>> csvdata = serializers.serialize('csv', Foo.objects.all())
+
