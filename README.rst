@@ -11,6 +11,8 @@ Included Snippets
 +++++++++++++++++++++++++
 Displays hotshot profiling for any view. Add a "prof" key to the query string by appending ?prof (or &prof=) and you'll see the profiling results in your browser, i.e. http://yoursite.com/yourview/?prof
 
+Original Snippet - http://djangosnippets.org/snippets/186/
+
 To enable add ``snippetscream.ProfileMiddleware`` to your ``MIDDLEWARE_CLASSES`` setting, i.e.::
     
     MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('snippetscream.ProfileMiddleware',)
@@ -83,6 +85,8 @@ To enable add ``snippetscream`` to your ``INSTALLED_APPS`` settings and create t
 2240. CSV Serializer
 ++++++++++++++++++++
 Supplies CSV serialization for models. Can be used via the ``dumpdata/loaddata`` management commands or programmatically using the ``django.core.serializers`` module. Supports multiple header lines and natural keys.
+
+Original Snippet - http://djangosnippets.org/snippets/2240/
 
 To enable add ``snippetscream.csv_serializer`` to your ``SERIALIZATION_MODULES`` setting, i.e.::
     
