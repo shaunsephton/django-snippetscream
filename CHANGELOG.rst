@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.0.5 (2011-07-06)
+------------------
+#. Included 2240 - `CSV serializer <http://djangosnippets.org/snippets/2240/>`_
+
 0.0.4
 -----
 #. Included 186 - `Profiling Middlware <http://djangosnippets.org/snippets/186/>`_
