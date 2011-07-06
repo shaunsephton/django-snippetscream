@@ -30,3 +30,7 @@ Maintained By
 #. statico 
 #. Brandon Craig Rhodes
 
+2240. CSV serializer
+--------------------
+#. stringify
+
