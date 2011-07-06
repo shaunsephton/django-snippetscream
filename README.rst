@@ -82,7 +82,7 @@ To enable add ``snippetscream`` to your ``INSTALLED_APPS`` settings and create t
 
 2240. CSV Serializer
 ++++++++++++++++++++
-Supplies CSV serialization for models. Can be used via the dumpdata/loaddata management commands or programmatically using the ``django.core.serializers`` module. Supports multiple header lines and natural keys.
+Supplies CSV serialization for models. Can be used via the ``dumpdata/loaddata`` management commands or programmatically using the ``django.core.serializers`` module. Supports multiple header lines and natural keys.
 
 To enable add ``snippetscream.csv_serializer`` to your ``SERIALIZATION_MODULES`` setting, i.e.::
     
