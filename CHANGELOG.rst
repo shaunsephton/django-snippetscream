@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.0.6 (2011-09-01)
+------------------
+#. Pep8. 
+#. Don't fail without profiler.
+
 0.0.5 (2011-07-06)
 ------------------
 #. Included 2240 - `CSV serializer <http://djangosnippets.org/snippets/2240/>`_
