@@ -110,6 +110,7 @@ _NK_SPLIT_RE = re.compile(r"""
     , *                # comma and optional spaces
     (?=\[)             # opening bracket (lookahead)""", re.VERBOSE)
 
+
 def Deserializer(stream_or_string, **options):
     """
     Deserialize a stream or string of CSV data.
@@ -149,7 +150,7 @@ def Deserializer(stream_or_string, **options):
         stream = stream_or_string
 
     reader = UnicodeReader(stream)
-    header = next(reader) # first line must be a header
+    header = next(reader)  # first line must be a header
 
     data = []
     for row in reader:

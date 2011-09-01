@@ -1,8 +1,10 @@
 # http://djangosnippets.org/snippets/1378/
 
-from django.core.urlresolvers import RegexURLResolver, RegexURLPattern, Resolver404, get_resolver
+from django.core.urlresolvers import RegexURLResolver, RegexURLPattern, \
+    Resolver404, get_resolver
 
 __all__ = ('resolve_to_name',)
+
 
 def _pattern_resolve_to_name(self, path):
     match = self.regex.search(path)
@@ -13,8 +15,10 @@ def _pattern_resolve_to_name(self, path):
         elif hasattr(self, '_callback_str'):
             name = self._callback_str
         else:
-            name = "%s.%s" % (self.callback.__module__, self.callback.func_name)
+            name = "%s.%s" % (self.callback.__module__, self.callback.\
+                    func_name)
         return name
+
 
 def _resolver_resolve_to_name(self, path):
     tried = []
@@ -25,7 +29,8 @@ def _resolver_resolve_to_name(self, path):
             try:
                 name = pattern.resolve_to_name(new_path)
             except Resolver404, e:
-                tried.extend([(pattern.regex.pattern + '   ' + t) for t in e.args[0]['tried']])
+                tried.extend([(pattern.regex.pattern + '   ' + t) for t in \
+                        e.args[0]['tried']])
             else:
                 if name:
                     return name

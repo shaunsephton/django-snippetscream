@@ -4,22 +4,22 @@ from django.core.handlers.base import BaseHandler
 from django.core.handlers.wsgi import WSGIRequest
 from django.test import Client
 
+
 class RequestFactory(Client):
     """
     Class that lets you create mock Request objects for use in testing.
-    
+
     Usage:
-    
+
     rf = RequestFactory()
     get_request = rf.get('/hello/')
     post_request = rf.post('/submit/', {'foo': 'bar'})
-    
+
     This class re-uses the django.test.client.Client interface, docs here:
     http://www.djangoproject.com/documentation/testing/#the-test-client
-    
-    Once you have a request object you can pass it to any view function, 
+
+    Once you have a request object you can pass it to any view function,
     just as if that view had been hooked up using a URLconf.
-    
     """
     def request(self, **request):
         """
@@ -37,7 +37,7 @@ class RequestFactory(Client):
             'SERVER_PROTOCOL': 'HTTP/1.1',
         }
         environ.update(self.defaults)
-        environ.update(request) 
+        environ.update(request)
         request = WSGIRequest(environ)
 
         # Add request.user.
