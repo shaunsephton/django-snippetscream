@@ -8,7 +8,7 @@ test.run_tests = run_tests
 
 setup(
     name='django-snippetscream',
-    version='0.0.5',
+    version='0.0.6',
     description='Django app packaging the best snippets found on http://djangosnippets.org',
     long_description = open('README.rst', 'r').read() + open('AUTHORS.rst', 'r').read() + open('CHANGELOG.rst', 'r').read(),
     author='Shaun Sephton',
