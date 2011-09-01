@@ -1,4 +1,10 @@
 from setuptools import setup, find_packages
+from setuptools.command.test import test
+
+def run_tests(self):
+    from setuptest.runtests import runtests
+    return runtests(self)
+test.run_tests = run_tests
 
 setup(
     name='django-snippetscream',
@@ -8,8 +14,12 @@ setup(
     author='Shaun Sephton',
     author_email='shaunsephton@gmail.com',
     url='http://github.com/shaunsephton/django-snippetscream',
-    packages = find_packages(),
+    packages=find_packages(),
     include_package_data=True,
+    test_suite="snippetscream.tests",
+    tests_require=[
+        'django-setuptest',
+    ],
     classifiers = [
         "Programming Language :: Python",
         "License :: OSI Approved :: BSD License",
