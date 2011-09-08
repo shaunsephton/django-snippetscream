@@ -34,3 +34,6 @@ Maintained By
 --------------------
 #. stringify
 
+2536. Configurable defaults for contrib.sites default Site during syncdb
+------------------------------------------------------------------------
+#. chrischambers
