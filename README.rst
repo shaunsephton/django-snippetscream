@@ -107,15 +107,19 @@ Example::
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Modelled after #1875, this provides a more sensible default for the ``Site``
 object created during the first pass of ``syncdb`` (default domain of
-``localhost:8000``). It means that the admin's "view on site" button will work
+``localhost:8000``). It means that the admin's *view on site* button will work
 automagically, amongst other things.
 
 Original Snippet - http://djangosnippets.org/snippets/2536/
 
-To enable, simply add ``snippetscream`` to your ``INSTALLED_APPS`` settings.
-If you'd like to customise the default ``Site`` yourself, you can specify:
+To enable add ``snippetscream`` to your ``INSTALLED_APPS`` settings and create the following setting::
 
-* settings parameters (``DEFAULT_SITE_DOMAIN`` and ``DEFAULT_SITE_NAME``) or
-* ``kwargs`` for the ``create_default_site`` function [#]_
+    CREATE_DEFAULT_SITE = True
 
-.. [#] ``kwargs`` take precedence over the settings parameters.
+If you'd like to customise the default ``Site`` yourself, you can specify ``DEFAULT_SITE_DOMAIN`` and ``DEFAULT_SITE_NAME`` settings, e.g::
+    
+    DEFAULT_SITE_DOMAIN = 'my.site.com'
+    DEFAULT_SITE_NAME = 'My Site'
+
+Optionally you can manually call the ``create_default_site`` method and pass ``name`` and ``domain`` arguments which take precedence over the settings parameters.
+
