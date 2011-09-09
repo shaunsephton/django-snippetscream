@@ -103,3 +103,19 @@ Example::
     >>> from django.core import serializers
     >>> csvdata = serializers.serialize('csv', Foo.objects.all())
 
+2536. Configurable defaults for contrib.sites default Site during syncdb
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Modelled after #1875, this provides a more sensible default for the ``Site``
+object created during the first pass of ``syncdb`` (default domain of
+``localhost:8000``). It means that the admin's "view on site" button will work
+automagically, amongst other things.
+
+Original Snippet - http://djangosnippets.org/snippets/2536/
+
+To enable, simply add ``snippetscream`` to your ``INSTALLED_APPS`` settings.
+If you'd like to customise the default ``Site`` yourself, you can specify:
+
+* settings parameters (``DEFAULT_SITE_DOMAIN`` and ``DEFAULT_SITE_NAME``) or
+* ``kwargs`` for the ``create_default_site`` function [#]_
+
+.. [#] ``kwargs`` take precedence over the settings parameters.
