@@ -8,7 +8,6 @@ from django.contrib.sites.models import Site
 from django.contrib.sites import models as site_app
 from django.contrib.sites.management import create_default_site as orig_default_site
 
-signals.post_syncdb.disconnect(orig_default_site, sender=site_app)
 
 # Configure default Site creation with better defaults, and provide
 # overrides for those defaults via settings and kwargs:
@@ -23,9 +22,21 @@ def create_default_site(app, created_models, verbosity, db, **kwargs):
 
     if Site in created_models:
         if verbosity >= 2:
-            print "Creating example.com Site object"
+            print 'Creating default Site object:\nname: %s\ndomain: %s' % (name, domain)
         s = Site(domain=domain, name=name)
         s.save(using=db)
     Site.objects.clear_cache()
 
-signals.post_syncdb.connect(create_default_site, sender=site_app)
+if getattr(settings, 'CREATE_DEFAULT_SITE', False):
+    # Disconnect original site creator.
+    signals.post_syncdb.disconnect(
+        orig_default_site,
+        sender=site_app,
+    )
+
+    # Trigger default site creation.
+    signals.post_syncdb.connect(
+        create_default_site,
+        sender=site_app,
+        dispatch_uid='snippetscream._2536.create_default_site'
+    )
