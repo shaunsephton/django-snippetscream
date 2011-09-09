@@ -5,3 +5,5 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'snippetscream',
 ]
+
+ROOT_URLCONF = 'snippetscream.tests.urls'

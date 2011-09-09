@@ -57,3 +57,11 @@ class PolyModel(unittest.TestCase):
         trunk_obj.save()
         self.failUnless(PolyTrunkModel.objects.get(id=trunk_obj.id).\
                 as_leaf_class() == trunk_obj)
+
+class TestCase1378(unittest.TestCase):
+    
+    def test_resolve_to_name(self):
+        from snippetscream import resolve_to_name
+        result = resolve_to_name('some/url')
+        result = resolve_to_name('some/other/url')
+        import pdb; pdb.set_trace()
