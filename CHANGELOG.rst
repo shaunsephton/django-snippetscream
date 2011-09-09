@@ -4,6 +4,7 @@ Changelog
 0.0.7 (2011-09-09)
 ------------------
 #. Removed monkeypatching on and added test for 1378.
+#. Included 2536 - `Configurable defaults for contrib.sites default Site during syncdb <http://djangosnippets.org/snippets/2536/>`_
 
 0.0.6 (2011-09-01)
 ------------------
