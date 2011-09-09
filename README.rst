@@ -61,15 +61,15 @@ Example::
 
     === urlconf ====
     urlpatterns = patterns(''
-        (r'/some/url', 'app.views.view'),
-        (r'/some/other/url', 'app.views.other.view', {}, 'this_is_a_named_view'),
+        url(r'^some/url/$', 'app.views.view'),
+        url(r'^some/other/url/$', 'app.views.other.view', name='this_is_a_named_view'),
     )
 
     === example usage in interpreter ===
     >>> from snippetscream import resolve_to_name
-    >>> print resolve_to_name('/some/url')
+    >>> print resolve_to_name('/some/url/')
     'app.views.view'
-    >>> print resolve_to_name('/some/other/url')
+    >>> print resolve_to_name('/some/other/url/')
     'this_is_a_named_view'
 
 1875. Auto-create Django Admin User During syncdb

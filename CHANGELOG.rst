@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.0.7 (2011-09-09)
+------------------
+#. Removed monkeypatching on and added test for 1378.
+
 0.0.6 (2011-09-01)
 ------------------
 #. Pep8. 

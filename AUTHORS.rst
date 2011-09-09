@@ -24,6 +24,8 @@ Maintained By
 1378. Resolve URLs to View Name
 -------------------------------
 #. UloPe
+#. aelke
+#. fahhem
 
 1875. Auto-create Django Admin User During syncdb
 -------------------------------------------------
