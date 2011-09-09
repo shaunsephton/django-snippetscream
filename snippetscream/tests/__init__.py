@@ -1,8 +1,10 @@
 import unittest
 
 from django.contrib.contenttypes.models import ContentType
+from django.core.urlresolvers import Resolver404
 
-from snippetscream import PolyModel
+from snippetscream import PolyModel, resolve_to_name
+        
 
 
 class PolyTrunkModel(PolyModel):
@@ -61,7 +63,11 @@ class PolyModel(unittest.TestCase):
 class TestCase1378(unittest.TestCase):
     
     def test_resolve_to_name(self):
-        from snippetscream import resolve_to_name
-        result = resolve_to_name('some/url')
-        result = resolve_to_name('some/other/url')
-        import pdb; pdb.set_trace()
+        # URL matching unnamed view should return its callable name.
+        self.failUnlessEqual(resolve_to_name('/some/url/'), 'app.views.view', 'Return view callable name on unnamed view match')
+
+        # URL matching named view should return its name.
+        self.failUnlessEqual(resolve_to_name('/some/other/url/'), 'this_is_a_named_view', 'Return view name on named view match')
+
+        # Bogus URL should result in Resolver404.
+        self.failUnlessRaises(Resolver404, resolve_to_name, '/some/bogus/url/')
