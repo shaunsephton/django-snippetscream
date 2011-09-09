@@ -1,10 +1,10 @@
 import unittest
 
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.sites.models import Site
 from django.core.urlresolvers import Resolver404
 
 from snippetscream import PolyModel, resolve_to_name
-        
 
 
 class PolyTrunkModel(PolyModel):
@@ -71,3 +71,8 @@ class TestCase1378(unittest.TestCase):
 
         # Bogus URL should result in Resolver404.
         self.failUnlessRaises(Resolver404, resolve_to_name, '/some/bogus/url/')
+
+class TestCase2537(unittest.TestCase):
+    
+    def test_create_default_site(self):
+        self.failUnlessEqual(Site.objects.get().domain, 'localhost:8000', 'Should only have one site with domain set to localhost:8000.')
