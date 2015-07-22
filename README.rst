@@ -66,7 +66,13 @@ Original: http://djangosnippets.org/snippets/1378/
         url(r'^some/url/$', 'app.views.view'),
         url(r'^some/other/url/$', 'app.views.other.view', name='this_is_a_named_view'),
     )
-
+    
+>>> from snippetscream import resolve_to_name
+>>> print resolve_to_name('/some/url/')
+'app.views.view'
+>>> print resolve_to_name('/some/other/url/')
+'this_is_a_named_view'
+    
 1875. Auto-create Django Admin User During syncdb
 +++++++++++++++++++++++++++++++++++++++++++++++++
 This avoids the frustrating step of having to set up a new admin user every time you re-initialize your database. 
