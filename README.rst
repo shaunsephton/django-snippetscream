@@ -50,22 +50,26 @@ Example::
     >>> trunk_obj.as_leaf_class()
     ... <LeafModel: LeafModel object>
     
-
-1378. Resolve URLs to View Name
+1378. Resolve URLs to view name
 +++++++++++++++++++++++++++++++
-Supplies a resolve_to_name function that takes in a path and resolves it to a view name or view function name (given that the path is actually defined in your urlconf).
 
-Original Snippet - http://djangosnippets.org/snippets/1378/
+Supplies a ``resolve_to_name`` function that takes in a path and
+resolves it to a view name or view function name (given that the path
+is actually defined in your urlconf).
 
-Example::
+Original: http://djangosnippets.org/snippets/1378/
 
-    === urlconf ====
+For example:
+
+.. code-block:: python
+    # urls.py
+
     urlpatterns = patterns(''
         url(r'^some/url/$', 'app.views.view'),
         url(r'^some/other/url/$', 'app.views.other.view', name='this_is_a_named_view'),
     )
 
-    === example usage in interpreter ===
+.. code-block:: python
     >>> from snippetscream import resolve_to_name
     >>> print resolve_to_name('/some/url/')
     'app.views.view'
@@ -103,23 +107,35 @@ Example::
     >>> from django.core import serializers
     >>> csvdata = serializers.serialize('csv', Foo.objects.all())
 
-2536. Configurable defaults for contrib.sites default Site during syncdb
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Modelled after #1875, this provides a more sensible default for the ``Site``
-object created during the first pass of ``syncdb`` (default domain of
-``localhost:8000``). It means that the admin's *view on site* button will work
-automagically, amongst other things.
+2536. Configurable defaults for django.contrib.sites
+++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Original Snippet - http://djangosnippets.org/snippets/2536/
+Modelled after snippet #1875, this provides a more sensible default
+for the ``Site`` object created during the first pass of ``syncdb``
+(default domain of ``localhost:8000``). It means that the admin's
+*view on site* button will work automagically, amongst other things.
 
-To enable add ``snippetscream`` to your ``INSTALLED_APPS`` settings and create the following setting::
+Original: http://djangosnippets.org/snippets/2536/
 
-    CREATE_DEFAULT_SITE = True
+First of all, add ``snippetscream`` to your ``INSTALLED_APPS`` list and enable the following setting:
 
-If you'd like to customise the default ``Site`` yourself, you can specify ``DEFAULT_SITE_DOMAIN`` and ``DEFAULT_SITE_NAME`` settings, e.g::
+.. code-block:: python
+
+     INSTALLED_APPS = (
+         ...
+         'tz_detect',
+     )
+     CREATE_DEFAULT_SITE = True
+
+If you'd like to customise the default ``Site`` yourself, you can specify ``DEFAULT_SITE_DOMAIN``
+and ``DEFAULT_SITE_NAME`` settings, e.g:
     
-    DEFAULT_SITE_DOMAIN = 'my.site.com'
-    DEFAULT_SITE_NAME = 'My Site'
+.. code-block:: python
 
-Optionally you can manually call the ``create_default_site`` method and pass ``name`` and ``domain`` arguments which take precedence over the settings parameters.
+    DEFAULT_SITE_DOMAIN = 'instagram.com'
+    DEFAULT_SITE_NAME = 'Instagram'
+
+Optionally you can manually call the ``snippetscream.create_default_site``
+method and pass ``name`` and ``domain`` arguments which take precedence
+over the settings parameters...
 
