@@ -5,37 +5,38 @@ All credit goes to the various super generous snippet creators and comment contr
 
 Maintained By
 -------------
-#. Shaun Sephton
+Shaun Sephton
+Basil Shubin
 
 186. Profiling Middleware
 -------------------------
-#. udfalkso
+udfalkso
 
 963. RequestFactory
 -------------------
-#. simon
-#. akalhola
+simon
+akalhola
 
 1031. Model Inheritance With Content Type 
 -----------------------------------------
-#. crucialfelix
-#. tygielzchaosem
+crucialfelix
+tygielzchaosem
 
 1378. Resolve URLs to View Name
 -------------------------------
-#. UloPe
-#. aehlke
-#. fahhem
+UloPe
+aehlke
+fahhem
 
 1875. Auto-create Django Admin User During syncdb
 -------------------------------------------------
-#. statico 
-#. Brandon Craig Rhodes
+statico 
+Brandon Craig Rhodes
 
 2240. CSV serializer
 --------------------
-#. stringify
+stringify
 
 2536. Configurable defaults for contrib.sites default Site during syncdb
 ------------------------------------------------------------------------
-#. chrischambers
+chrischambers
