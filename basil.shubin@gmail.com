@@ -59,22 +59,13 @@ is actually defined in your urlconf).
 
 Original: http://djangosnippets.org/snippets/1378/
 
-For example:
-
 .. code-block:: python
-    # urls.py
 
+    # urls.py
     urlpatterns = patterns(''
         url(r'^some/url/$', 'app.views.view'),
         url(r'^some/other/url/$', 'app.views.other.view', name='this_is_a_named_view'),
     )
-
-.. code-block:: python
-    >>> from snippetscream import resolve_to_name
-    >>> print resolve_to_name('/some/url/')
-    'app.views.view'
-    >>> print resolve_to_name('/some/other/url/')
-    'this_is_a_named_view'
 
 1875. Auto-create Django Admin User During syncdb
 +++++++++++++++++++++++++++++++++++++++++++++++++
@@ -121,11 +112,11 @@ First of all, add ``snippetscream`` to your ``INSTALLED_APPS`` list and enable t
 
 .. code-block:: python
 
-     INSTALLED_APPS = (
-         ...
-         'tz_detect',
-     )
-     CREATE_DEFAULT_SITE = True
+    INSTALLED_APPS = (
+        ...
+        'tz_detect',
+    )
+    CREATE_DEFAULT_SITE = True
 
 If you'd like to customise the default ``Site`` yourself, you can specify ``DEFAULT_SITE_DOMAIN``
 and ``DEFAULT_SITE_NAME`` settings, e.g:
