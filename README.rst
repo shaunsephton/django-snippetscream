@@ -118,14 +118,10 @@ for the ``Site`` object created during the first pass of ``syncdb``
 
 Original: http://djangosnippets.org/snippets/2536/
 
-First of all, add ``snippetscream`` to your ``INSTALLED_APPS`` list and enable the following setting:
+First of all, add ``snippetscream`` to your ``INSTALLED_APPS`` and enable the following setting:
 
 .. code-block:: python
 
-    INSTALLED_APPS = (
-        ...
-        'tz_detect',
-    )
     CREATE_DEFAULT_SITE = True
 
 If you'd like to customise the default ``Site`` yourself, you can specify ``DEFAULT_SITE_DOMAIN``
