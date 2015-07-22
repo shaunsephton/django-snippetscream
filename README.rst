@@ -59,6 +59,8 @@ is actually defined in your urlconf).
 
 Original: http://djangosnippets.org/snippets/1378/
 
+Example:
+
 .. code-block:: python
 
     # urls.py
@@ -66,12 +68,14 @@ Original: http://djangosnippets.org/snippets/1378/
         url(r'^some/url/$', 'app.views.view'),
         url(r'^some/other/url/$', 'app.views.other.view', name='this_is_a_named_view'),
     )
-    
->>> from snippetscream import resolve_to_name
->>> print resolve_to_name('/some/url/')
-'app.views.view'
->>> print resolve_to_name('/some/other/url/')
-'this_is_a_named_view'
+
+.. code-block:: pycon
+
+    >>> from snippetscream import resolve_to_name
+    >>> print resolve_to_name('/some/url/')
+    'app.views.view'
+    >>> print resolve_to_name('/some/other/url/')
+    'this_is_a_named_view'
     
 1875. Auto-create Django Admin User During syncdb
 +++++++++++++++++++++++++++++++++++++++++++++++++
