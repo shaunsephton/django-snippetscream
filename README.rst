@@ -28,8 +28,8 @@ Example::
     from snippetscream import RequestFactory
     request = RequestFactory().get('/')
 
-1031. Model inheritance using ContentType
-+++++++++++++++++++++++++++++++++++++++++
+1031. Model inheritance using ``ContentType``
++++++++++++++++++++++++++++++++++++++++++++++
 
 Supplies a model class aware of its child models, allowing for child
 class objects to be resolved from parent objects.
@@ -72,7 +72,7 @@ Example:
         url(r'^some/other/url/$', 'app.views.other.view', name='this_is_a_named_view'),
     )
 
-.. code-block:: pycon
+.. code-block:: python
 
     >>> from snippetscream import resolve_to_name
     >>> print resolve_to_name('/some/url/')
@@ -119,8 +119,8 @@ Example::
     >>> from django.core import serializers
     >>> csvdata = serializers.serialize('csv', Foo.objects.all())
 
-2536. Configurable defaults for django.contrib.sites
-++++++++++++++++++++++++++++++++++++++++++++++++++++
+2536. Configurable defaults for ``django.contrib.sites``
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Modelled after snippet #1875, this provides a more sensible default
 for the ``Site`` object created during the first pass of ``syncdb``
@@ -129,7 +129,7 @@ for the ``Site`` object created during the first pass of ``syncdb``
 
 Original: http://djangosnippets.org/snippets/2536/
 
-First of all, add ``snippetscream`` to your ``INSTALLED_APPS`` list and enable the following setting:
+First of all, add ``snippetscream`` to your ``INSTALLED_APPS`` and enable the following setting:
 
 .. code-block:: python
 
@@ -150,4 +150,3 @@ and ``DEFAULT_SITE_NAME`` settings, e.g:
 Optionally you can manually call the ``snippetscream.create_default_site``
 method and pass ``name`` and ``domain`` arguments which take precedence
 over the settings parameters...
-
