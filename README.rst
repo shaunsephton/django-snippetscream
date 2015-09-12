@@ -127,7 +127,7 @@ First of all, add ``snippetscream`` to your ``INSTALLED_APPS`` list and enable t
 
     INSTALLED_APPS = (
         ...
-        'tz_detect',
+        'snippetscream',
     )
     CREATE_DEFAULT_SITE = True
 

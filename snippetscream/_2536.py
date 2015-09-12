@@ -1,19 +1,25 @@
-#!/usr/bin/env python
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
+"""
+Configurable defaults for ``django.contrib.sites`` default
+``Site`` during syncdb
 
-# Adapted From Http://stackoverflow.com/questions/1466827/ --
+Modelled after snippet #1875, this provides a more sensible default
+for the ``Site`` object created during the first pass of syncdb
+(default domain of localhost:8000). It means that the admin's view on
+site button will work automagically, amongst other things.
+
+Original: http://djangosnippets.org/snippets/2536/
+
+"""
 from django.conf import settings
-from django.db.models import signals
-from django.contrib.sites.models import Site
-from django.contrib.sites import models as site_app
-from django.contrib.sites.management import create_default_site as orig_default_site
 
 
 # Configure default Site creation with better defaults, and provide
 # overrides for those defaults via settings and kwargs:
 def create_default_site(app, created_models, verbosity, db, **kwargs):
-    name  = kwargs.pop('name', None)
-    domain = kwargs.pop('domain', None)
+    from django.contrib.sites.models import Site
+
+    name, domain = kwargs.pop('name', None), kwargs.pop('domain', None)
 
     if not name:
         name = getattr(settings, 'DEFAULT_SITE_NAME', 'example.com')
@@ -21,22 +27,29 @@ def create_default_site(app, created_models, verbosity, db, **kwargs):
         domain = getattr(settings, 'DEFAULT_SITE_DOMAIN', 'localhost:8000')
 
     if Site in created_models:
+        obj = Site(domain=domain, name=name)
         if verbosity >= 2:
-            print 'Creating default Site object:\nname: %s\ndomain: %s' % (name, domain)
-        s = Site(domain=domain, name=name)
-        s.save(using=db)
+            print('Creating default Site object:\nname: %s\ndomain: %s' % (
+                name, domain))
+        obj.save(using=db)
+
     Site.objects.clear_cache()
 
+
 if getattr(settings, 'CREATE_DEFAULT_SITE', False):
+    from django.db.models import signals
+    from django.contrib.sites import models as sites_app
+    from django.contrib.sites import management as original
+
     # Disconnect original site creator.
     signals.post_syncdb.disconnect(
-        orig_default_site,
-        sender=site_app,
+        original.create_default_site,
+        sender=sites_app,
     )
 
     # Trigger default site creation.
     signals.post_syncdb.connect(
         create_default_site,
-        sender=site_app,
+        sender=sites_app,
         dispatch_uid='snippetscream._2536.create_default_site'
     )
