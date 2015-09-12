@@ -69,7 +69,7 @@ Example:
         url(r'^some/other/url/$', 'app.views.other.view', name='this_is_a_named_view'),
     )
 
-.. code-block:: pycon
+.. code-block:: python
 
     >>> from snippetscream import resolve_to_name
     >>> print resolve_to_name('/some/url/')
@@ -135,4 +135,3 @@ and ``DEFAULT_SITE_NAME`` settings, e.g:
 Optionally you can manually call the ``snippetscream.create_default_site``
 method and pass ``name`` and ``domain`` arguments which take precedence
 over the settings parameters...
-
