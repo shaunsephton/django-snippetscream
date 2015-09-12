@@ -80,14 +80,22 @@ Example:
     >>> print resolve_to_name('/some/other/url/')
     'this_is_a_named_view'
     
-1875. Auto-create Django Admin User During syncdb
-+++++++++++++++++++++++++++++++++++++++++++++++++
-This avoids the frustrating step of having to set up a new admin user every time you re-initialize your database. 
+1875. Auto-create Django admin user during ``syncdb``
++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Original Snippet - http://djangosnippets.org/snippets/1875/
+This avoids the frustrating step of having to set up a new admin user
+every time you re-initialize your database.
 
-To enable add ``snippetscream`` to your ``INSTALLED_APPS`` settings and create the following setting::
+Original: http://djangosnippets.org/snippets/1875/
 
+First of all, add ``snippetscream`` to your ``INSTALLED_APPS`` list and enable the following setting:
+
+.. code-block:: python
+
+    INSTALLED_APPS = (
+        ...
+        'snippetscream',
+    )
     CREATE_DEFAULT_SUPERUSER = True
 
 2240. CSV Serializer

@@ -1,40 +1,49 @@
-# http://djangosnippets.org/snippets/1875/
+# -*- coding: utf-8 -*-
+"""
+Auto-create Django admin user during syncdb
 
+This avoids the frustrating step of having to set up a new admin user
+every time you re-initialize your database.
+
+Adapted from http://stackoverflow.com/questions/1466827/
+
+Original: http://djangosnippets.org/snippets/1875/
+
+"""
+
+import importlib
 from django.conf import settings
-from django.contrib.auth import models as auth_models
-from django.contrib.auth.management import create_superuser
-from django.db.models import signals
 
+try:
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+except ImportError:
+    from django.contrib.auth.models import User
 
+    
 def create_default_superuser(app, created_models, verbosity, **kwargs):
-    """
-    Creates our default superuser.
-    """
     try:
-        auth_models.User.objects.get(username='admin')
-    except auth_models.User.DoesNotExist:
-        print 'Creating default superuser:\nUsername: admin\nPassword: \
-admin\nEmail: invalid@ddress.com'
-        assert auth_models.User.objects.create_superuser('admin', \
-                'invalid@ddress.com', 'admin')
-    else:
-        print 'Default superuser already exists.'
+        User.objects.get(username='admin')
+    except User.DoesNotExist:
+        if verbosity >= 2:
+            print("Creating default superuser:\nusername: %s\npassword: %s\nemail: %s" % (
+                "admin", "admin", "invalid@address.com"))
+        assert User.objects.create_superuser(
+            username='admin', email='invalid@address.com', password='admin')
+
 
 if getattr(settings, 'CREATE_DEFAULT_SUPERUSER', False):
-    # From http://stackoverflow.com/questions/1466827/:
-    # Prevent interactive question about wanting a superuser created.
-    # (This code has to go in this otherwise empty "models" module
-    # so that it gets processed by the "syncdb" command during
-    # database creation.)
+    from django.db.models import signals
+    from django.contrib.auth.management import create_superuser
+
     signals.post_syncdb.disconnect(
         create_superuser,
-        sender=auth_models,
-        dispatch_uid='django.contrib.auth.management.create_superuser'
+        sender=importlib.import_module(User.__module__),
     )
 
     # Trigger default superuser creation.
     signals.post_syncdb.connect(
         create_default_superuser,
-        sender=auth_models,
-        dispatch_uid='common.models.create_testuser'
+        sender=importlib.import_module(User.__module__),
+        dispatch_uid='snippetscream._1875.create_default_superuser'
     )
