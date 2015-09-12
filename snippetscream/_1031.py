@@ -1,7 +1,16 @@
-# http://djangosnippets.org/snippets/1031/
+# -*- coding: utf-8 -*-
+"""
+Model inheritance with content type
 
-from django.contrib.contenttypes.models import ContentType
+This snippet supplies a model class aware of its child models,
+allowing for child class objects to be resolved from parent objects.
+
+Original: http://djangosnippets.org/snippets/1031/
+
+"""
+
 from django.db import models
+from django.contrib.contenttypes.models import ContentType
 
 
 class PolyModel(models.Model):
@@ -18,18 +27,11 @@ class PolyModel(models.Model):
     class) you then want to reload the chosen object as the subclass
     that it really is:
 
-    thing.as_leaf_class()
+    >>> thing.as_leaf_class()
+
     """
-    content_type = models.ForeignKey(
-        ContentType,
-        editable=False,
-        null=True
-    )
-    class_name = models.CharField(
-        max_length=32,
-        editable=False,
-        null=True
-    )
+    content_type = models.ForeignKey(ContentType, editable=False, null=True)
+    class_name = models.CharField(max_length=32, editable=False, null=True)
 
     class Meta:
         abstract = True
@@ -42,11 +44,10 @@ class PolyModel(models.Model):
         try:
             return self.__getattribute__(self.class_name.lower())
         except AttributeError:
-            content_type = self.content_type
-            model = content_type.model_class()
-            if(PolyModel in model.__bases__):
+            model_class = self.content_type.model_class()
+            if (PolyModel in model_class.__bases__):
                 return self
-            return model.objects.get(id=self.id)
+            return model_class.objects.get(id=self.id)
 
     def save(self, *args, **kwargs):
         """
@@ -54,8 +55,8 @@ class PolyModel(models.Model):
         """
         # set leaf class content type
         if not self.content_type:
-            self.content_type = ContentType.objects.get_for_model(self.\
-                    __class__)
+            self.content_type = ContentType.objects.get_for_model(
+                self.__class__)
 
         # set leaf class class name
         if not self.class_name:

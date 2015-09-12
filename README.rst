@@ -28,15 +28,18 @@ Example::
     from snippetscream import RequestFactory
     request = RequestFactory().get('/')
 
-1031. Model Inheritance With Content Type 
+1031. Model inheritance using ContentType
 +++++++++++++++++++++++++++++++++++++++++
-Supplies a model class aware of its child models, allowing for child class objects to be resolved from parent objects.
 
-Original Snippet - http://djangosnippets.org/snippets/1031/
+Supplies a model class aware of its child models, allowing for child
+class objects to be resolved from parent objects.
 
-Example::
+Original: http://djangosnippets.org/snippets/1031/
 
-    === example usage in interpreter ===
+Example:
+
+.. code-block:: python
+
     >>> from snippetscream import PolyModel
     >>> class TrunkModel(PolyModel):
     ...     pass
